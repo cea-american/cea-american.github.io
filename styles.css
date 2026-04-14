@@ -622,7 +622,7 @@ textarea {
 }
 
 .stat-card--refrigerado::before {
-  background-image: url("img/2.png");
+  background-image: url("img/3.png");
 }
 
 .stat-card--seco::before {
@@ -692,7 +692,7 @@ textarea {
       rgba(6, 19, 33, 0.82) 40%,
       rgba(6, 19, 33, 0.9) 100%
     ),
-    url("img/deposito2.avif") center/cover no-repeat;
+    url("img/2.png") center/cover no-repeat;
 }
 
 #servicios::after {
