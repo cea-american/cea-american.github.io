@@ -7,7 +7,7 @@ Built as a fast, lightweight, and performance-focused frontend using pure HTML, 
 
 ## 🚀 Live Site
 
-👉 https://cea-american.github.io/
+👉 https://cea-american.com.ar
 
 *(Update this URL if you connect a custom domain)*
 
