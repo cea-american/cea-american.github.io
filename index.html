@@ -50,11 +50,7 @@
     />
 
     <!-- Favicons (completo como la ex index) -->
-    <link
-      rel="icon"
-      type="image/x-icon"
-      href="/favicon_io/favicon.ico"
-    />
+    <link rel="icon" type="image/x-icon" href="/favicon_io/favicon.ico" />
     <link
       rel="icon"
       type="image/png"
@@ -974,169 +970,29 @@
       </div>
     </footer>
 
-    <script>
-      const menuToggle = document.getElementById("menuToggle");
-      const siteNav = document.getElementById("siteNav");
+    <!-- MODAL ANIVERSARIO -->
+    <div class="anniversary-modal" id="anniversaryModal">
+      <div class="anniversary-modal__overlay"></div>
 
-      if (menuToggle && siteNav) {
-        menuToggle.addEventListener("click", () => {
-          const isOpen = siteNav.classList.toggle("is-open");
-          menuToggle.setAttribute("aria-expanded", String(isOpen));
-        });
+      <div class="anniversary-modal__content">
+        <button class="anniversary-modal__close" id="closeModal" type="button">
+          ✕
+        </button>
 
-        siteNav.querySelectorAll("a").forEach((link) => {
-          link.addEventListener("click", () => {
-            siteNav.classList.remove("is-open");
-            menuToggle.setAttribute("aria-expanded", "false");
-          });
-        });
-      }
-
-      const reveals = document.querySelectorAll(".reveal");
-
-      const revealObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("is-visible");
-              revealObserver.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.14 },
-      );
-
-      reveals.forEach((item) => revealObserver.observe(item));
-
-      const form = document.getElementById("contactForm");
-      const formStatus = document.getElementById("formStatus");
-
-      if (form) {
-        form.addEventListener("submit", function (e) {
-          e.preventDefault();
-
-          const name = document.getElementById("name").value.trim();
-          const email = document.getElementById("email").value.trim();
-          const message = document.getElementById("message").value.trim();
-
-          const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-
-          if (!name || !email || !message) {
-            formStatus.textContent =
-              "Completá nombre, email y mensaje para enviar la consulta.";
-            return;
-          }
-
-          if (!isValidEmail) {
-            formStatus.textContent = "Ingresá un email válido para continuar.";
-            return;
-          }
-
-          formStatus.textContent =
-            "Gracias por tu consulta. Nuestro equipo te contactará para evaluar tu operación.";
-          form.reset();
-        });
-      }
-    </script>
-    <script>
-      const snowFxSelectors = [
-        //  ".stat-card",
-        ".card",
-        //  ".hero__panel",
-        //  ".hero__item",
-        ".feature",
-        //  ".coverage-card",
-        ".trust-card",
-        //  ".process__step",
-        //  ".cta-band",
-        ".contact-map-card",
-        //  ".contact-card",
-        //  ".form-card",
-        //  ".footer__brand",
-        //  ".footer__col",
-      ];
-
-      const snowFxCards = document.querySelectorAll(snowFxSelectors.join(", "));
-
-      snowFxCards.forEach((card) => {
-        card.classList.add("snow-fx-card");
-
-        let icon = card.querySelector(".snow-fx");
-        if (!icon) {
-          icon = document.createElement("span");
-          icon.className = "snow-fx";
-          icon.setAttribute("aria-hidden", "true");
-          icon.textContent = "❄";
-          card.appendChild(icon);
-        }
-
-        card.addEventListener("mouseenter", () => {
-          card.classList.add("is-hovered");
-        });
-
-        card.addEventListener("mouseleave", () => {
-          card.classList.remove("is-hovered");
-        });
-
-        card.addEventListener("mousemove", (e) => {
-          const rect = card.getBoundingClientRect();
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-
-          icon.style.left = `${x}px`;
-          icon.style.top = `${y}px`;
-
-          card.style.setProperty("--mx", `${x}px`);
-          card.style.setProperty("--my", `${y}px`);
-        });
-      });
-    </script>
-    <script>
-      const serviceSelect = document.getElementById("serviceSelect");
-
-      if (serviceSelect) {
-        const trigger = serviceSelect.querySelector(".custom-select__trigger");
-        const valueText = serviceSelect.querySelector(".custom-select__value");
-        const options = serviceSelect.querySelectorAll(
-          ".custom-select__option",
-        );
-        const hiddenInput = document.getElementById("service");
-
-        const closeSelect = () => {
-          serviceSelect.classList.remove("is-open");
-          trigger.setAttribute("aria-expanded", "false");
-        };
-
-        trigger.addEventListener("click", () => {
-          const isOpen = serviceSelect.classList.toggle("is-open");
-          trigger.setAttribute("aria-expanded", String(isOpen));
-        });
-
-        options.forEach((option) => {
-          option.addEventListener("click", () => {
-            options.forEach((opt) => opt.classList.remove("is-selected"));
-            option.classList.add("is-selected");
-
-            const value = option.dataset.value || "";
-            valueText.textContent = option.textContent.trim();
-            hiddenInput.value = value;
-
-            closeSelect();
-          });
-        });
-
-        document.addEventListener("click", (e) => {
-          if (!serviceSelect.contains(e.target)) {
-            closeSelect();
-          }
-        });
-
-        document.addEventListener("keydown", (e) => {
-          if (e.key === "Escape") {
-            closeSelect();
-          }
-        });
-      }
-    </script>
+        <div class="anniversary-modal__inner">
+          <span class="anniversary-modal__eyebrow">Aniversario</span>
+          <h2>🎉 23 años acompañando operaciones logísticas🎉</h2>
+          <p>
+            Con 23 años de trayectoria, ofrecemos soluciones integrales de
+            almacenamiento y distribución a temperatura controlada, respaldadas
+            por experiencia y compromiso.
+          </p>
+          <button class="btn btn--primary" id="closeModalBtn" type="button">
+            Continuar
+          </button>
+        </div>
+      </div>
+    </div>
+    <script src="main.js"></script>
   </body>
 </html>
