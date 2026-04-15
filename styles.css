@@ -2098,3 +2098,82 @@ textarea {
   opacity: 1;
   border-color: currentColor;
 }
+/* MODAL ANIVERSARIO */
+.anniversary-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+}
+
+.anniversary-modal.is-active {
+  display: block;
+}
+
+.anniversary-modal__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(2, 10, 20, 0.75);
+  backdrop-filter: blur(6px);
+}
+
+.anniversary-modal__content {
+  position: relative;
+  max-width: 520px;
+  margin: auto;
+  top: 50%;
+  transform: translateY(-50%);
+  background: linear-gradient(180deg, #0c233e, #081a30);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 18px;
+  padding: 36px 28px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+  animation: modalFade 0.4s ease;
+}
+
+@keyframes modalFade {
+  from {
+    opacity: 0;
+    transform: translateY(-40%) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+  }
+}
+
+.anniversary-modal__close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.anniversary-modal__inner {
+  text-align: center;
+}
+
+.anniversary-modal__eyebrow {
+  display: inline-block;
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #37e2d5;
+  margin-bottom: 12px;
+}
+
+.anniversary-modal h2 {
+  font-size: 1.8rem;
+  margin-bottom: 14px;
+  color: #fff;
+}
+
+.anniversary-modal p {
+  color: #c7d4e3;
+  line-height: 1.6;
+  margin-bottom: 22px;
+}
