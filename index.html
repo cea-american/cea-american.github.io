@@ -733,8 +733,20 @@
             </div>
 
             <div class="form-card reveal">
-              <form id="contactForm" novalidate>
+              <form
+                id="contactForm"
+                action="https://formspree.io/f/xkokoroe"
+                method="POST"
+                novalidate
+              >
                 <div class="form-grid">
+                  <input
+                    type="hidden"
+                    name="_subject"
+                    value="Nueva consulta desde CEA American"
+                  />
+                  <input type="hidden" name="_captcha" value="false" />
+                  <input type="hidden" name="_replyto" id="replyto">
                   <div class="field">
                     <label for="name">Nombre</label>
                     <input
