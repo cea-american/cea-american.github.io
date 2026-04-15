@@ -23,51 +23,20 @@ if (menuToggle && siteNav) {
 // =============================
 const reveals = document.querySelectorAll(".reveal");
 
-const revealObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("is-visible");
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  },
-  { threshold: 0.14 }
-);
+if (reveals.length) {
+  const revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.14 },
+  );
 
-reveals.forEach((item) => revealObserver.observe(item));
-
-// =============================
-// FORM VALIDATION
-// =============================
-const form = document.getElementById("contactForm");
-const formStatus = document.getElementById("formStatus");
-
-if (form) {
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    const name = document.getElementById("name").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const message = document.getElementById("message").value.trim();
-
-    const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-
-    if (!name || !email || !message) {
-      formStatus.textContent =
-        "Completá nombre, email y mensaje para enviar la consulta.";
-      return;
-    }
-
-    if (!isValidEmail) {
-      formStatus.textContent = "Ingresá un email válido para continuar.";
-      return;
-    }
-
-    formStatus.textContent =
-      "Gracias por tu consulta. Nuestro equipo te contactará para evaluar tu operación.";
-    form.reset();
-  });
+  reveals.forEach((item) => revealObserver.observe(item));
 }
 
 // =============================
@@ -128,13 +97,17 @@ if (serviceSelect) {
 
   const closeSelect = () => {
     serviceSelect.classList.remove("is-open");
-    trigger.setAttribute("aria-expanded", "false");
+    if (trigger) {
+      trigger.setAttribute("aria-expanded", "false");
+    }
   };
 
-  trigger.addEventListener("click", () => {
-    const isOpen = serviceSelect.classList.toggle("is-open");
-    trigger.setAttribute("aria-expanded", String(isOpen));
-  });
+  if (trigger) {
+    trigger.addEventListener("click", () => {
+      const isOpen = serviceSelect.classList.toggle("is-open");
+      trigger.setAttribute("aria-expanded", String(isOpen));
+    });
+  }
 
   options.forEach((option) => {
     option.addEventListener("click", () => {
@@ -142,8 +115,12 @@ if (serviceSelect) {
       option.classList.add("is-selected");
 
       const value = option.dataset.value || "";
-      valueText.textContent = option.textContent.trim();
-      hiddenInput.value = value;
+      if (valueText) {
+        valueText.textContent = option.textContent.trim();
+      }
+      if (hiddenInput) {
+        hiddenInput.value = value;
+      }
 
       closeSelect();
     });
@@ -158,6 +135,116 @@ if (serviceSelect) {
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
       closeSelect();
+    }
+  });
+}
+
+// =============================
+// FORMULARIO + FORMSPREE
+// =============================
+const form = document.getElementById("contactForm");
+const formStatus = document.getElementById("formStatus");
+const emailInput = document.getElementById("email");
+const replyToInput = document.getElementById("replyto");
+
+if (emailInput && replyToInput) {
+  emailInput.addEventListener("input", (e) => {
+    replyToInput.value = e.target.value.trim();
+  });
+}
+
+if (form && formStatus) {
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById("name")?.value.trim() || "";
+    const email = document.getElementById("email")?.value.trim() || "";
+    const message = document.getElementById("message")?.value.trim() || "";
+    const submitButton = form.querySelector('button[type="submit"]');
+
+    const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+    if (!name || !email || !message) {
+      formStatus.textContent =
+        "Completá nombre, email y mensaje para enviar la consulta.";
+      return;
+    }
+
+    if (!isValidEmail) {
+      formStatus.textContent = "Ingresá un email válido para continuar.";
+      return;
+    }
+
+    if (replyToInput) {
+      replyToInput.value = email;
+    }
+
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.textContent = "Enviando...";
+    }
+
+    formStatus.textContent = "Enviando consulta...";
+
+    try {
+      const formData = new FormData(form);
+
+      const response = await fetch(form.action, {
+        method: form.method || "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
+      });
+
+      if (response.ok) {
+        formStatus.textContent =
+          "Gracias por tu consulta. Nuestro equipo te contactará para evaluar tu operación.";
+        form.reset();
+
+        const serviceValue = document.querySelector(
+          "#serviceSelect .custom-select__value",
+        );
+        const serviceOptions = document.querySelectorAll(
+          "#serviceSelect .custom-select__option",
+        );
+        const hiddenService = document.getElementById("service");
+
+        if (serviceValue) {
+          serviceValue.textContent = "Seleccionar";
+        }
+
+        if (hiddenService) {
+          hiddenService.value = "";
+        }
+
+        serviceOptions.forEach((opt, index) => {
+          opt.classList.toggle("is-selected", index === 0);
+        });
+
+        if (replyToInput) {
+          replyToInput.value = "";
+        }
+      } else {
+        const data = await response.json().catch(() => null);
+
+        if (data?.errors?.length) {
+          formStatus.textContent = data.errors
+            .map((error) => error.message)
+            .join(", ");
+        } else {
+          formStatus.textContent =
+            "No pudimos enviar la consulta. Probá nuevamente en unos minutos.";
+        }
+      }
+    } catch (error) {
+      formStatus.textContent =
+        "Ocurrió un problema de conexión. Intentá nuevamente.";
+    } finally {
+      if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.textContent = "Enviar consulta";
+      }
     }
   });
 }
