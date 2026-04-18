@@ -43,10 +43,21 @@ if (reveals.length) {
 // SNOW FX (HOVER EFFECT)
 // =============================
 const snowFxSelectors = [
+  ".hero__panel",
+
   ".card",
+  ".media-card",
   ".feature",
+  ".coverage-card",
   ".trust-card",
+  ".process__step",
+  ".cta-band",
   ".contact-map-card",
+  ".contact-card",
+  ".form-card",
+  // ".footer__brand",
+  // ".footer__col",
+  ".anniversary-modal__content",
 ];
 
 const snowFxCards = document.querySelectorAll(snowFxSelectors.join(", "));
