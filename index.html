@@ -31,7 +31,7 @@
     <meta property="og:url" content="https://cea-american.com.ar/" />
     <meta
       property="og:image"
-      content="https://cea-american.com.ar/img/logo_redondo.png"
+      content="https://cea-american.com.ar/img/web/og.jpg"
     />
     <meta property="og:locale" content="es_AR" />
 
@@ -46,7 +46,7 @@
     />
     <meta
       name="twitter:image"
-      content="https://cea-american.com.ar/img/logo_redondo.png"
+      content="https://cea-american.com.ar/img/web/og.jpg"
     />
 
     <!-- Favicons (completo como la ex index) -->
@@ -85,8 +85,10 @@
         "telephone": "+54 9 11 5427-0519",
         "email": "at.clientes@cea-american.com.ar",
         "areaServed": ["CABA", "GBA", "Argentina"],
+        "openingHours": "Mo-Fr 08:00-17:00",
         "address": {
           "@type": "PostalAddress",
+          "streetAddress": "Mejico 5250",
           "addressLocality": "Villa Martelli",
           "addressRegion": "Buenos Aires",
           "addressCountry": "AR"
@@ -94,9 +96,36 @@
       }
     </script>
 
+    <script>
+      (function () {
+        var root = document.documentElement;
+        root.classList.add("js");
+        try {
+          if (localStorage.getItem("ceaAnniversaryBar") === String(new Date().getFullYear())) {
+            root.classList.add("anniv-off");
+          }
+        } catch (e) {}
+      })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600&family=Barlow:wght@400;500;600;700&family=Sanchez&display=swap"
+    />
+    <link
+      rel="preload"
+      as="image"
+      type="image/webp"
+      imagesrcset="img/web/hero-820.webp 820w, img/web/hero-1536.webp 1536w"
+      imagesizes="100vw"
+    />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <a class="skip-link" href="#main">Saltar al contenido</a>
+
     <a
       href="https://wa.me/5491154270519?text=Hola%2C%20estoy%20evaluando%20servicios%20de%20almacenaje%20y%20distribuci%C3%B3n.%20%C2%BFPodr%C3%ADan%20asesorarme%3F"
       class="whatsapp-float"
@@ -119,26 +148,19 @@
         />
       </svg>
     </a>
+
+    <aside class="anniv" id="anniversaryBar" aria-label="Aniversario">
+      <p><strong data-years>23 años</strong> acompañando operaciones logísticas</p>
+      <button class="anniv__close" id="anniversaryClose" type="button" aria-label="Cerrar aviso de aniversario">
+        <span aria-hidden="true">✕</span>
+      </button>
+    </aside>
+
     <header class="topbar">
       <div class="container topbar__inner">
-        <a
-          class="brand"
-          href="#inicio"
-          aria-label="Ir al inicio de CEA American"
-        >
-          <img src="img/logo2.png" alt="CEA American" />
+        <a class="brand" href="#inicio" aria-label="Ir al inicio de CEA American">
+          <img src="img/web/logo.webp" alt="CEA American" width="223" height="52" />
         </a>
-
-        <button
-          class="menu-toggle"
-          id="menuToggle"
-          type="button"
-          aria-label="Abrir menú"
-          aria-expanded="false"
-          aria-controls="siteNav"
-        >
-          ☰
-        </button>
 
         <nav class="nav" id="siteNav" aria-label="Navegación principal">
           <a href="#servicios">Servicios</a>
@@ -148,145 +170,103 @@
           <a href="#contacto">Contacto</a>
         </nav>
 
-        <a class="btn btn--primary topbar__cta" href="#contactForm">
-          Solicitar cotización
-        </a>
+        <a class="btn btn--primary topbar__cta" href="#contactForm">Solicitar cotización</a>
+
+        <button
+          class="menu-toggle"
+          id="menuToggle"
+          type="button"
+          aria-label="Abrir menú"
+          aria-expanded="false"
+          aria-controls="siteNav"
+        >
+          <span aria-hidden="true"></span>
+        </button>
       </div>
     </header>
 
-    <main>
+    <main id="main">
       <section class="hero" id="inicio">
-        <div class="container hero__grid">
-          <div class="hero__copy reveal">
-            <span class="hero__eyebrow">
-              Cadena de frío · logística alimentaria · operación B2B
-            </span>
+        <img
+          class="hero__photo"
+          src="img/web/hero-1536.webp"
+          srcset="img/web/hero-820.webp 820w, img/web/hero-1536.webp 1536w"
+          sizes="100vw"
+          width="1536"
+          height="1024"
+          alt=""
+          fetchpriority="high"
+        />
 
-            <h1 class="hero__title">
-              <span>Gestión de almacenamiento</span>
-              <span>y logística</span>
-              <span class="highlight">con control integral</span>
-            </h1>
+        <div class="container hero__body">
+          <p class="eyebrow hero__rise">Cadena de frío · logística alimentaria · operación B2B</p>
 
-            <p class="hero__lead">
-              Soluciones integrales de almacenamiento y logística para productos
-              refrigerados, congelados y secos, con tecnología de punta,
-              trazabilidad en cada etapa y una atención personalizada orientada
-              a cada operación.
-            </p>
+          <h1 class="hero__title hero__rise">
+            Gestión de almacenamiento y logística
+            <em>con control integral</em>
+          </h1>
 
-            <div class="hero__actions">
-              <a class="btn btn--primary" href="#contactForm">
-                Solicitar cotización
-              </a>
-              <a class="btn btn--secondary" href="#servicios">
-                Ver servicios
-              </a>
-            </div>
+          <p class="hero__lead hero__rise">
+            Soluciones integrales de almacenamiento y logística para productos
+            refrigerados, congelados y secos, con tecnología de punta,
+            trazabilidad en cada etapa y una atención personalizada orientada a
+            cada operación.
+          </p>
 
-            <ul class="hero__proof" aria-label="Diferenciales principales">
-              <li class="proof-pill">Flota propia</li>
-              <li class="proof-pill">Trazabilidad</li>
-              <li class="proof-pill">Monitoreo térmico</li>
-              <li class="proof-pill">SENASA y habilitaciones</li>
-            </ul>
+          <div class="hero__actions hero__rise">
+            <a class="btn btn--primary" href="#contactForm">Solicitar cotización</a>
+            <a class="btn btn--ghost" href="#servicios">Ver servicios</a>
           </div>
+        </div>
 
-          <aside
-            class="hero__panel reveal"
-            aria-label="Infraestructura y operación"
-          >
-            <div class="hero__panel-top">
-              <span class="hero__panel-kicker"
-                >Infraestructura y operación</span
-              >
-              <h2>Preparados para operar sin desvíos</h2>
-              <p>
-                Recursos, control y capacidad logística para operaciones que no
-                pueden perder estabilidad.
-              </p>
-            </div>
-
-            <div class="hero__metrics">
-              <article class="hero__metric">
-                <strong>Cámaras para frío y congelado</strong>
-                <span
-                  >Condiciones térmicas acordes a cada tipo de mercadería.</span
-                >
-              </article>
-
-              <article class="hero__metric">
-                <strong>Flota propia para distribución</strong>
-                <span
-                  >Más control sobre salidas, entregas y capacidad de
-                  respuesta.</span
-                >
-              </article>
-
-              <article class="hero__metric">
-                <strong>Monitoreo térmico y operativo</strong>
-                <span
-                  >Seguimiento de unidades y temperatura durante toda la
-                  operación.</span
-                >
-              </article>
-
-              <article class="hero__metric">
-                <strong>Seguridad e higiene</strong>
-                <span
-                  >Buenas prácticas y criterios operativos claros en cada etapa.
-                  Servicio sanitario SENASA</span
-                >
-              </article>
-            </div>
-          </aside>
+        <div class="proof">
+          <ul class="container proof__list" aria-label="Diferenciales principales">
+            <li class="proof__item proof__item--lead"><strong data-years>23 años</strong><span>de trayectoria</span></li>
+            <li class="proof__item"><strong>Flota propia</strong><span>CABA, GBA e interior</span></li>
+            <li class="proof__item"><strong>Monitoreo 24/7</strong><span>de unidades y temperatura</span></li>
+            <li class="proof__item"><strong>Trazabilidad</strong><span>en cada etapa</span></li>
+            <li class="proof__item"><strong>SENASA</strong><span>servicio sanitario y habilitaciones</span></li>
+          </ul>
         </div>
       </section>
 
-      <section class="stats" aria-label="Tipos de operación">
-        <div class="container stats__grid">
-          <article class="stat-card stat-card--congelado reveal">
-            <strong>Congelado</strong>
-            <span>
-              Conservación de mercadería a muy baja temperatura con estabilidad
-              térmica y salida planificada.
-            </span>
-          </article>
-
-          <article class="stat-card stat-card--refrigerado reveal">
-            <strong>Refrigerado</strong>
-            <span>
-              Almacenaje para productos que requieren temperatura controlada y
-              disponibilidad constante.
-            </span>
-          </article>
-
-          <article class="stat-card stat-card--seco reveal">
-            <strong>Seco</strong>
-            <span>
-              Espacios para mercadería sin exigencia térmica, integrados a la
-              operación de stock y preparación.
-            </span>
-          </article>
-
-          <article class="stat-card stat-card--distribucion reveal">
-            <strong>Distribución</strong>
-            <span>
-              Cobertura logística en CABA, GBA e interior con flota propia y
-              seguimiento operativo.
-            </span>
-          </article>
-        </div>
+      <section class="regimes" aria-label="Tipos de operación">
+        <article class="regime">
+          <img src="img/web/congelado.webp" width="820" height="547" alt="Autoelevador en una cámara de congelado" loading="lazy" decoding="async" />
+          <div class="regime__body">
+            <h2>Congelado</h2>
+            <p>Conservación de mercadería a muy baja temperatura con estabilidad térmica y salida planificada.</p>
+          </div>
+        </article>
+        <article class="regime">
+          <img src="img/web/refrigerado.webp" width="720" height="1080" alt="Autoelevador junto al portón de una cámara refrigerada" loading="lazy" decoding="async" />
+          <div class="regime__body">
+            <h2>Refrigerado</h2>
+            <p>Almacenaje para productos que requieren temperatura controlada y disponibilidad constante.</p>
+          </div>
+        </article>
+        <article class="regime">
+          <img src="img/web/seco.webp" width="820" height="547" alt="Depósito de mercadería seca con autoelevador" loading="lazy" decoding="async" />
+          <div class="regime__body">
+            <h2>Seco</h2>
+            <p>Espacios para mercadería sin exigencia térmica, integrados a la operación de stock y preparación.</p>
+          </div>
+        </article>
+        <article class="regime">
+          <img src="img/web/distribucion.webp" width="820" height="547" alt="Camiones de reparto en la ciudad al atardecer" loading="lazy" decoding="async" />
+          <div class="regime__body">
+            <h2>Distribución</h2>
+            <p>Cobertura logística en CABA, GBA e interior con flota propia y seguimiento operativo.</p>
+          </div>
+        </article>
       </section>
 
       <section class="section" id="servicios">
         <div class="container">
           <div class="section-head reveal">
             <div>
-              <span class="eyebrow">Servicios</span>
-              <h2>
-                Servicios pensados para operaciones que no pueden perder control
-              </h2>
+              <p class="eyebrow">Servicios</p>
+              <h2>Servicios pensados para operaciones que no pueden perder control</h2>
             </div>
             <p>
               Almacenaje, preparación y distribución para empresas que necesitan
@@ -294,62 +274,53 @@
             </p>
           </div>
 
-          <div class="services-grid">
-            <article class="card reveal">
-              <div class="card__icon">01</div>
-              <h3>Almacenaje refrigerado</h3>
-              <p>
-                Operación para mercadería de alta rotación que requiere
-                temperatura controlada, disponibilidad y continuidad de
-                abastecimiento.
-              </p>
-              <ul>
+          <div class="services">
+            <div class="service service--pair reveal">
+              <div class="service__main">
+                <article>
+                  <span class="service__num">01</span>
+                  <h3>Almacenaje refrigerado</h3>
+                  <p>Operación para mercadería de alta rotación que requiere temperatura controlada, disponibilidad y continuidad de abastecimiento.</p>
+                </article>
+                <article>
+                  <span class="service__num">02</span>
+                  <h3>Almacenaje congelado</h3>
+                  <p>Conservación de productos a bajas temperaturas para operaciones que exigen estabilidad térmica y resguardo prolongado.</p>
+                </article>
+              </div>
+              <ul class="service__list">
                 <li>Recepción y control de ingreso</li>
                 <li>Gestión de stock en frío</li>
                 <li>Control térmico constante</li>
                 <li>Monitoreo digital de temperaturas</li>
                 <li>Planificación y salida programada</li>
               </ul>
-            </article>
+            </div>
 
-            <article class="card reveal">
-              <div class="card__icon">02</div>
-              <h3>Almacenaje congelado</h3>
-              <p>
-                Conservación de productos a bajas temperaturas para operaciones
-                que exigen estabilidad térmica y resguardo prolongado.
-              </p>
-              <ul>
-                <li>Recepción y control de ingreso</li>
-                <li>Gestión de stock en frío</li>
-                <li>Control térmico constante</li>
-                <li>Monitoreo digital de temperaturas</li>
-                <li>Planificación y salida programada</li>
-              </ul>
-            </article>
-
-            <article class="card reveal">
-              <div class="card__icon">03</div>
-              <h3>Preparación de pedidos</h3>
-              <p>
-                Picking, clasificación y consolidación para despachos más
-                ordenados, ágiles y alineados con cada circuito logístico.
-              </p>
-              <ul>
+            <article class="service reveal">
+              <div class="service__main">
+                <div>
+                  <span class="service__num">03</span>
+                  <h3>Preparación de pedidos</h3>
+                  <p>Picking, clasificación y consolidación para despachos más ordenados, ágiles y alineados con cada circuito logístico.</p>
+                </div>
+              </div>
+              <ul class="service__list">
                 <li>Armado de pedidos</li>
                 <li>Control previo</li>
                 <li>Despacho operativo</li>
               </ul>
             </article>
 
-            <article class="card reveal">
-              <div class="card__icon">04</div>
-              <h3>Distribución</h3>
-              <p>
-                Salida logística con unidades propias para operar con mayor
-                control, seguimiento y capacidad de respuesta.
-              </p>
-              <ul>
+            <article class="service reveal">
+              <div class="service__main">
+                <div>
+                  <span class="service__num">04</span>
+                  <h3>Distribución</h3>
+                  <p>Salida logística con unidades propias para operar con mayor control, seguimiento y capacidad de respuesta.</p>
+                </div>
+              </div>
+              <ul class="service__list">
                 <li>Camiones y camionetas</li>
                 <li>CABA, GBA e interior</li>
                 <li>Monitoreo de unidades</li>
@@ -359,558 +330,274 @@
         </div>
       </section>
 
-      <section class="section" id="diferenciales">
-        <div class="container">
-          <div class="section-head reveal">
-            <div>
-              <span class="eyebrow">Diferenciales</span>
+      <section class="section section--light" id="diferenciales">
+        <div class="container why">
+          <div class="why__media reveal">
+            <img class="why__photo" src="img/web/deposito.webp" width="960" height="1280" alt="Pasillo de depósito con racks de mercadería paletizada" loading="lazy" decoding="async" />
+            <img class="why__photo why__photo--inset" src="img/web/camiones.webp" width="960" height="640" alt="Flota de camiones estacionada" loading="lazy" decoding="async" />
+          </div>
+
+          <div>
+            <div class="section-head section-head--stack reveal">
+              <p class="eyebrow">Diferenciales</p>
               <h2>Por qué muchas operaciones necesitan algo más que espacio</h2>
             </div>
-            <!-- <p>
-              Diferenciales que sostienen una operación más controlada, trazable
-              y confiable.
-            </p> -->
-          </div>
 
-          <div class="value-grid">
-            <article class="card card--image reveal">
-              <div class="card__icon">🚚</div>
-              <h3>Flota propia para responder mejor</h3>
-              <p>
-                Tener unidades propias permite ordenar la salida logística,
-                reducir desvíos y sostener mayor control sobre cada entrega.
-              </p>
-              <span class="card__badge">Distribución propia</span>
-            </article>
-
-            <article class="card reveal">
-              <div class="card__icon">📍</div>
-              <h3>Trazabilidad de punta a punta</h3>
-              <p>
-                Seguimiento de movimientos, stock y salidas para operar con más
-                visibilidad y menos margen de error.
-              </p>
-              <span class="card__badge">Seguimiento continuo</span>
-            </article>
-
-            <article class="card card--image card--highlight reveal">
-              <div class="card__icon">❄</div>
-              <h3>Control térmico sostenido</h3>
-              <p>
-                Monitoreo permanente e instrumentos digitales para resguardar la
-                estabilidad de productos sensibles durante toda la operación.
-              </p>
-              <span class="card__badge">Monitoreo 24/7</span>
-            </article>
-
-            <article class="card reveal">
-              <div class="card__icon">🛡</div>
-              <h3>Procesos alineados con normativa</h3>
-              <p>
-                Trabajo respaldado por habilitaciones, buenas prácticas y
-                criterios de seguridad e higiene aplicados a la operación
-                diaria.
-              </p>
-              <span class="card__badge">Normativa vigente</span>
-            </article>
+            <div class="claims">
+              <article class="claim reveal">
+                <svg class="claim__icon" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 6h12v11H2zM14 10h4l4 4v3h-8z"/><circle cx="7" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg>
+                <h3>Flota propia para responder mejor</h3>
+                <p>Tener unidades propias permite ordenar la salida logística, reducir desvíos y sostener mayor control sobre cada entrega.</p>
+              </article>
+              <article class="claim reveal">
+                <svg class="claim__icon" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.4"/></svg>
+                <h3>Trazabilidad de punta a punta</h3>
+                <p>Seguimiento de movimientos, stock y salidas para operar con más visibilidad y menos margen de error.</p>
+              </article>
+              <article class="claim reveal">
+                <svg class="claim__icon" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14.5V5a2.5 2.5 0 0 1 5 0v9.5a4.5 4.5 0 1 1-5 0z"/><path d="M12.5 9v8"/><circle cx="12.5" cy="18" r="1.5"/></svg>
+                <h3>Control térmico sostenido</h3>
+                <p>Monitoreo permanente e instrumentos digitales para resguardar la estabilidad de productos sensibles durante toda la operación.</p>
+              </article>
+              <article class="claim reveal">
+                <svg class="claim__icon" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5.5c0 4.5-3 7.8-7 9.5-4-1.7-7-5-7-9.5V6z"/><path d="M9 12l2.2 2.2L15.5 10"/></svg>
+                <h3>Procesos alineados con normativa</h3>
+                <p>Trabajo respaldado por habilitaciones, buenas prácticas y criterios de seguridad e higiene aplicados a la operación diaria.</p>
+              </article>
+            </div>
           </div>
         </div>
       </section>
 
-      <section class="section section--alt" id="infraestructura">
+      <section class="section" id="infraestructura">
         <div class="container split">
-          <div class="media-card reveal" aria-hidden="true"></div>
+          <div class="split__media reveal">
+            <img src="img/web/infraestructura.webp" width="800" height="1200" alt="Pasillo de racks dentro de una cámara de frío" loading="lazy" decoding="async" />
+          </div>
 
-          <div class="feature-list">
-            <div class="section-head reveal" style="margin-bottom: 8px">
-              <div>
-                <span class="eyebrow">Infraestructura</span>
-                <h2>
-                  Infraestructura preparada para conservar, ordenar y mover
-                  mercadería
-                </h2>
-              </div>
+          <div>
+            <div class="section-head section-head--stack reveal">
+              <p class="eyebrow">Infraestructura</p>
+              <h2>Infraestructura preparada para conservar, ordenar y mover mercadería</h2>
             </div>
 
-            <article class="feature reveal">
-              <strong>Cámaras para frío y congelado</strong>
-              <p>
-                Espacios preparados para operar mercadería bajo diferentes
-                exigencias térmicas, según el tipo de producto y su rotación.
-              </p>
-            </article>
-
-            <article class="feature reveal">
-              <strong>Monitoreo de unidades y temperatura</strong>
-              <p>
-                Seguimiento de camiones y control térmico para sostener
-                continuidad durante la distribución.
-              </p>
-            </article>
-
-            <article class="feature reveal">
-              <strong>Pallets, racks, bins y etiquetado</strong>
-              <p>
-                Recursos orientados a una operación más ordenada, con mejor
-                visibilidad de stock y mayor control de movimientos.
-              </p>
-            </article>
-
-            <article class="feature reveal">
-              <strong>Tecnología Frigorífica</strong>
-              <p>
-                Invertimos constantemente en maquinaria y tecnología de última
-                generación para optimizar nuestros procesos frigoríficos.
-              </p>
-            </article>
+            <div class="features">
+              <article class="feature reveal">
+                <h3>Cámaras para frío y congelado</h3>
+                <p>Espacios preparados para operar mercadería bajo diferentes exigencias térmicas, según el tipo de producto y su rotación.</p>
+              </article>
+              <article class="feature reveal">
+                <h3>Monitoreo de unidades y temperatura</h3>
+                <p>Seguimiento de camiones y control térmico para sostener continuidad durante la distribución.</p>
+              </article>
+              <article class="feature reveal">
+                <h3>Pallets, racks, bins y etiquetado</h3>
+                <p>Recursos orientados a una operación más ordenada, con mejor visibilidad de stock y mayor control de movimientos.</p>
+              </article>
+              <article class="feature reveal">
+                <h3>Tecnología frigorífica</h3>
+                <p>Invertimos constantemente en maquinaria y tecnología de última generación para optimizar nuestros procesos frigoríficos.</p>
+              </article>
+              <article class="feature reveal">
+                <h3>Seguridad e higiene</h3>
+                <p>Buenas prácticas y criterios operativos claros en cada etapa. Servicio sanitario SENASA.</p>
+              </article>
+            </div>
           </div>
         </div>
       </section>
 
-      <section class="section">
-        <div class="container coverage">
-          <article class="coverage-card reveal">
-            <span class="eyebrow">Cobertura</span>
-            <h3>Distribución con alcance urbano, regional y de mayor escala</h3>
+      <section class="coverage">
+        <img
+          class="coverage__photo"
+          src="img/web/cobertura.webp"
+          srcset="img/web/cobertura-820.webp 820w, img/web/cobertura.webp 1536w"
+          sizes="100vw"
+          width="1536"
+          height="1024"
+          alt=""
+          loading="lazy"
+          decoding="async"
+        />
+        <div class="container coverage__grid">
+          <div class="coverage__copy reveal">
+            <p class="eyebrow">Cobertura</p>
+            <h2>Distribución con alcance urbano, regional y de mayor escala</h2>
             <p>
               Operamos circuitos en CABA, GBA e interior del país con una
               logística preparada para responder con seguimiento, orden
               operativo y mayor control sobre cada entrega.
             </p>
+            <ul class="coverage__zones">
+              <li>CABA</li>
+              <li>GBA</li>
+              <li>Interior del país</li>
+            </ul>
+          </div>
 
-            <div class="coverage-tags">
-              <span class="tag">CABA</span>
-              <span class="tag">GBA</span>
-              <span class="tag">Interior del país</span>
-              <span class="tag">Flota propia</span>
-              <span class="tag">Monitoreo térmico</span>
-            </div>
-          </article>
-
-          <article class="trust-card reveal">
-            <span class="eyebrow">Confianza operativa</span>
-            <h3>
-              Una operación respaldada por infraestructura, procesos y
-              experiencia
-            </h3>
+          <div class="trust reveal">
+            <p class="eyebrow">Confianza operativa</p>
+            <h3>Una operación respaldada por infraestructura, procesos y experiencia</h3>
             <p>
               CEA American acompaña empresas que necesitan mover mercadería
               sensible con más orden, previsibilidad y control en cada etapa.
             </p>
-
-            <ul class="trust-list">
+            <ul class="check-list">
               <li>Manipulación de alimentos basada en buenas prácticas</li>
-              <li>
-                Capacitación del personal para sostener estándares operativos
-              </li>
+              <li>Capacitación del personal para sostener estándares operativos</li>
               <li>Trazabilidad y monitoreo durante todo el circuito</li>
               <li>Base operativa en Buenos Aires con cobertura ampliada</li>
             </ul>
-          </article>
+          </div>
         </div>
       </section>
 
-      <!-- <section class="section section--alt">
+      <section class="section section--light" id="proceso">
         <div class="container">
           <div class="section-head reveal">
             <div>
-              <span class="eyebrow">Operación</span>
-              <h2>
-                Una estructura preparada para responder con más previsibilidad
-              </h2>
-            </div>
-            <p>
-              Infraestructura, procesos y recursos orientados a sostener
-              operaciones logísticas con mayor orden, seguimiento y estabilidad.
-            </p>
-          </div>
-
-          <div class="metrics-grid">
-            <article class="metric-card metric-card--snow-fx reveal">
-              <span class="snow-fx" aria-hidden="true">❄</span>
-              <strong>Infraestructura preparada</strong>
-              <p>
-                Espacios y sistemas organizados para operar congelado,
-                refrigerado y seco con lógica de stock y flujo.
-              </p>
-            </article>
-
-            <article class="metric-card metric-card--snow-fx reveal">
-              <span class="snow-fx" aria-hidden="true">❄</span>
-              <strong>Criterios de cumplimiento</strong>
-              <p>
-                Procesos alineados con habilitaciones, requisitos del rubro y
-                estándares de manipulación aplicados a la operación diaria.
-              </p>
-            </article>
-
-            <article class="metric-card metric-card--snow-fx reveal">
-              <span class="snow-fx" aria-hidden="true">❄</span>
-              <strong>Respuesta logística</strong>
-              <p>
-                Unidades propias para sostener mejor control sobre la salida, el
-                recorrido y la entrega de la mercadería.
-              </p>
-            </article>
-
-            <article class="metric-card metric-card--snow-fx reveal">
-              <span class="snow-fx" aria-hidden="true">❄</span>
-              <strong>Visibilidad operativa</strong>
-              <p>
-                Monitoreo y trazabilidad para operar con más información, menos
-                desvíos y mayor capacidad de seguimiento.
-              </p>
-            </article>
-          </div>
-        </div>
-      </section> -->
-
-      <section class="section" id="proceso">
-        <div class="container">
-          <div class="section-head reveal">
-            <div>
-              <span class="eyebrow">Proceso</span>
+              <p class="eyebrow">Proceso</p>
               <h2>Cómo organizamos cada etapa de la operación</h2>
             </div>
-            <!-- <p>
-              Un flujo de trabajo claro permite sostener control, continuidad y
-              cumplimiento en cada etapa de la operación.
-            </p> -->
           </div>
 
-          <div class="process">
-            <article class="process__step process__step--recepcion reveal">
-              <div class="num">1</div>
+          <ol class="process reveal">
+            <li class="step">
+              <img src="img/web/proceso-recepcion.webp" width="640" height="427" alt="Control de mercadería en la recepción" loading="lazy" decoding="async" />
+              <span class="step__num">1</span>
               <h3>Recepción</h3>
-              <p>
-                Ingreso de mercadería con control inicial, validación operativa
-                y definición de condiciones de almacenamiento.
-              </p>
-            </article>
-
-            <article class="process__step process__step--almacenaje reveal">
-              <div class="num">2</div>
+              <p>Ingreso de mercadería con control inicial, validación operativa y definición de condiciones de almacenamiento.</p>
+            </li>
+            <li class="step">
+              <img src="img/web/proceso-almacenaje.webp" width="640" height="427" alt="Cámaras de almacenaje con distintas temperaturas" loading="lazy" decoding="async" />
+              <span class="step__num">2</span>
               <h3>Almacenaje</h3>
-              <p>
-                Ubicación en condiciones acordes a refrigerado, congelado o seco
-                según el tipo de producto y la dinámica de la operación.
-              </p>
-            </article>
-
-            <article class="process__step process__step--preparacion reveal">
-              <div class="num">3</div>
+              <p>Ubicación en condiciones acordes a refrigerado, congelado o seco según el tipo de producto y la dinámica de la operación.</p>
+            </li>
+            <li class="step">
+              <img src="img/web/proceso-preparacion.webp" width="640" height="427" alt="Operarios preparando pedidos" loading="lazy" decoding="async" />
+              <span class="step__num">3</span>
               <h3>Preparación</h3>
-              <p>
-                Armado, clasificación y consolidación de pedidos con control
-                previo a la salida logística.
-              </p>
-            </article>
-
-            <article class="process__step process__step--distribucion reveal">
-              <div class="num">4</div>
+              <p>Armado, clasificación y consolidación de pedidos con control previo a la salida logística.</p>
+            </li>
+            <li class="step">
+              <img src="img/web/proceso-distribucion.webp" width="640" height="427" alt="Carga de mercadería en camiones" loading="lazy" decoding="async" />
+              <span class="step__num">4</span>
               <h3>Distribución</h3>
-              <p>
-                Despacho con flota propia, seguimiento operativo y foco en
-                cumplimiento, trazabilidad y resguardo térmico.
-              </p>
-            </article>
-          </div>
+              <p>Despacho con flota propia, seguimiento operativo y foco en cumplimiento, trazabilidad y resguardo térmico.</p>
+            </li>
+          </ol>
         </div>
       </section>
 
-      <section class="section">
-        <div class="container">
-          <div class="cta-band reveal">
+      <section class="section section--contact" id="contacto">
+        <div class="container contact">
+          <div class="contact__info reveal">
+            <p class="eyebrow">Contacto</p>
             <h2>Evaluemos juntos la logística que necesita tu operación</h2>
-            <p>
+            <p class="contact__lead">
               Te ayudamos a definir almacenamiento, preparación de pedidos y
               distribución según el tipo de mercadería, cobertura y dinámica de
               trabajo.
             </p>
 
-            <div class="cta-band__actions">
-              <a class="btn btn--primary" href="#contactForm">
-                Solicitar cotización
-              </a>
-              <a class="btn btn--ghost" href="tel:+5491154270519">
-                Hablar con un asesor
-              </a>
-            </div>
+            <dl class="contact__list">
+              <div><dt>WhatsApp</dt><dd><a href="https://wa.me/5491154270519?text=Hola%2C%20estoy%20evaluando%20servicios%20de%20almacenaje%20y%20distribuci%C3%B3n.%20%C2%BFPodr%C3%ADan%20asesorarme%3F" target="_blank" rel="noopener noreferrer">+54 9 11 5427-0519</a></dd></div>
+              <div><dt>Teléfono</dt><dd><a href="tel:+541177277571">+54 11 7727-7571</a></dd></div>
+              <div><dt>Email</dt><dd><a href="mailto:at.clientes@cea-american.com.ar">at.clientes@cea-american.com.ar</a></dd></div>
+              <div><dt>Ubicación</dt><dd>Mejico 5250, Villa Martelli, Buenos Aires</dd></div>
+              <div><dt>Horario</dt><dd>Lunes a Viernes · 08:00 a 17:00</dd></div>
+              <div><dt>Cobertura</dt><dd>CABA, GBA e interior del país</dd></div>
+            </dl>
+          </div>
+
+          <div class="form-card reveal">
+            <form id="contactForm" action="https://formspree.io/f/xkokoroe" method="POST" novalidate>
+              <h3 class="form-card__title">Hablemos de tu operación</h3>
+              <input type="hidden" name="_subject" value="Nueva consulta desde CEA American" />
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="hidden" name="_replyto" id="replyto" value="" />
+              <input class="form-trap" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+              <div class="form-grid">
+                <div class="field">
+                  <label for="name">Nombre</label>
+                  <input id="name" name="name" type="text" autocomplete="name" placeholder="Tu nombre" required />
+                </div>
+                <div class="field">
+                  <label for="company">Empresa</label>
+                  <input id="company" name="company" type="text" autocomplete="organization" placeholder="Nombre de la empresa" />
+                </div>
+                <div class="field">
+                  <label for="email">Email</label>
+                  <input id="email" name="email" type="email" autocomplete="email" placeholder="tu@email.com" required />
+                </div>
+                <div class="field">
+                  <label for="phone">Teléfono</label>
+                  <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="+54 11..." />
+                </div>
+                <div class="field field--full">
+                  <label for="service">Servicio de interés</label>
+                  <select id="service" name="service">
+                    <option value="">Seleccionar</option>
+                    <option>Almacenaje refrigerado</option>
+                    <option>Almacenaje congelado</option>
+                    <option>Preparación de pedidos</option>
+                    <option>Distribución</option>
+                    <option>Operación integral</option>
+                    <option>Otro</option>
+                  </select>
+                </div>
+                <div class="field field--full">
+                  <label for="message">Mensaje</label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    placeholder="Contanos qué tipo de mercadería operás, cobertura necesaria, frecuencia de entrega o volumen estimado"
+                    required
+                  ></textarea>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn--primary form-submit">Enviar consulta</button>
+              <p class="form-status" id="formStatus" role="status"></p>
+            </form>
           </div>
         </div>
-      </section>
 
-      <section class="section section--alt" id="contacto">
-        <div class="container">
-          <div class="contact-map-card reveal">
-            <div class="contact-map-card__head">
-              <div>
-                <span class="eyebrow">Mapa</span>
-                <h3>Base operativa en Villa Martelli</h3>
-                <p>
-                  Ubicación estratégica para almacenamiento, distribución y
-                  cobertura logística en CABA, GBA e interior del país.
-                </p>
-              </div>
-
-              <a
-                class="btn btn--primary"
-                href="https://www.google.com/maps/search/?api=1&query=Mejico+5250+Villa+Martelli+Buenos+Aires"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Cómo llegar
-              </a>
+        <div class="container location reveal">
+          <div class="location__head">
+            <div>
+              <p class="eyebrow">Mapa</p>
+              <h3>Base operativa en Villa Martelli</h3>
+              <p>Ubicación estratégica para almacenamiento, distribución y cobertura logística en CABA, GBA e interior del país.</p>
             </div>
-
-            <div class="contact-map-card__frame">
-              <iframe
-                title="Mapa de CEA American en Villa Martelli"
-                src="https://www.google.com/maps?q=Mejico%205250%20Villa%20Martelli%20Buenos%20Aires&z=15&output=embed"
-                loading="lazy"
-                allowfullscreen
-                referrerpolicy="no-referrer-when-downgrade"
-              ></iframe>
-            </div>
+            <a class="btn btn--ghost" href="https://www.google.com/maps/search/?api=1&query=Mejico+5250+Villa+Martelli+Buenos+Aires" target="_blank" rel="noopener noreferrer">Cómo llegar</a>
           </div>
-
-          <div class="contact-wrap">
-            <div class="contact-card reveal">
-              <span class="eyebrow">Contacto</span>
-              <h2
-                style="
-                  margin: 16px 0 10px;
-                  font-size: clamp(1.9rem, 3vw, 2.7rem);
-                  line-height: 1.04;
-                  letter-spacing: -0.04em;
-                  color: var(--text-strong);
-                "
-              >
-                Hablemos de tu operación
-              </h2>
-
-              <p style="margin: 0; color: var(--muted); line-height: 1.78">
-                Si necesitás almacenamiento, distribución o una operación con
-                cadena de frío, completá el formulario y te contactaremos para
-                evaluar tu necesidad.
-              </p>
-
-              <div class="contact-list">
-                <div class="contact-item">
-                  <strong>Ubicación</strong>
-                  <p>Mejico 5250, Villa Martelli, Buenos Aires</p>
-                </div>
-
-                <div class="contact-item">
-                  <strong>Whatsapp</strong>
-                  <a href="tel:+5491154270519">+54 9 11 5427-0519</a>
-                </div>
-
-                <div class="contact-item">
-                  <strong>Teléfono</strong>
-                  <a href="tel:+5477277571">+54 7727-7571</a>
-                </div>
-
-                <div class="contact-item">
-                  <strong>Email</strong>
-                  <a href="mailto:at.clientes@cea-american.com.ar">
-                    at.clientes@cea-american.com.ar
-                  </a>
-                </div>
-
-                <div class="contact-item">
-                  <strong>Cobertura</strong>
-                  <p>CABA, GBA e interior del país</p>
-                </div>
-              </div>
-
-              <div class="contact-quick">
-                <span class="contact-chip">Flota propia</span>
-                <span class="contact-chip">Trazabilidad</span>
-                <span class="contact-chip">SENASA</span>
-                <span class="contact-chip">Cadena de frío</span>
-              </div>
-            </div>
-
-            <div class="form-card reveal">
-              <form
-                id="contactForm"
-                action="https://formspree.io/f/xkokoroe"
-                method="POST"
-                novalidate
-              >
-                <div class="form-grid">
-                  <input
-                    type="hidden"
-                    name="_subject"
-                    value="Nueva consulta desde CEA American"
-                  />
-                  <input type="hidden" name="_captcha" value="false" />
-                  <input type="hidden" name="_replyto" id="replyto" value="" />
-
-                  <div class="field">
-                    <label for="name">Nombre</label>
-                    <input
-                      id="name"
-                      name="name"
-                      type="text"
-                      placeholder="Tu nombre"
-                      required
-                    />
-                  </div>
-
-                  <div class="field">
-                    <label for="company">Empresa</label>
-                    <input
-                      id="company"
-                      name="company"
-                      type="text"
-                      placeholder="Nombre de la empresa"
-                    />
-                  </div>
-
-                  <div class="field">
-                    <label for="email">Email</label>
-                    <input
-                      id="email"
-                      name="email"
-                      type="email"
-                      placeholder="tu@email.com"
-                      required
-                    />
-                  </div>
-
-                  <div class="field">
-                    <label for="phone">Teléfono</label>
-                    <input
-                      id="phone"
-                      name="phone"
-                      type="tel"
-                      placeholder="+54 11..."
-                    />
-                  </div>
-
-                  <div class="field field--full custom-select-field">
-                    <label id="serviceLabel">Servicio de interés</label>
-
-                    <div class="custom-select" id="serviceSelect">
-                      <button
-                        type="button"
-                        class="custom-select__trigger"
-                        aria-haspopup="listbox"
-                        aria-expanded="false"
-                        aria-labelledby="serviceLabel"
-                      >
-                        <span class="custom-select__value">Seleccionar</span>
-                        <span class="custom-select__arrow">▾</span>
-                      </button>
-
-                      <div
-                        class="custom-select__dropdown"
-                        role="listbox"
-                        tabindex="-1"
-                      >
-                        <button
-                          type="button"
-                          class="custom-select__option is-selected"
-                          data-value=""
-                        >
-                          Seleccionar
-                        </button>
-                        <button
-                          type="button"
-                          class="custom-select__option"
-                          data-value="Almacenaje refrigerado"
-                        >
-                          Almacenaje refrigerado
-                        </button>
-                        <button
-                          type="button"
-                          class="custom-select__option"
-                          data-value="Almacenaje congelado"
-                        >
-                          Almacenaje congelado
-                        </button>
-                        <button
-                          type="button"
-                          class="custom-select__option"
-                          data-value="Preparación de pedidos"
-                        >
-                          Preparación de pedidos
-                        </button>
-                        <button
-                          type="button"
-                          class="custom-select__option"
-                          data-value="Distribución"
-                        >
-                          Distribución
-                        </button>
-                        <button
-                          type="button"
-                          class="custom-select__option"
-                          data-value="Operación integral"
-                        >
-                          Operación integral
-                        </button>
-                        <button
-                          type="button"
-                          class="custom-select__option"
-                          data-value="Otro"
-                        >
-                          Otro
-                        </button>
-                      </div>
-                    </div>
-
-                    <input type="hidden" name="service" id="service" value="" />
-                  </div>
-
-                  <div class="field field--full">
-                    <label for="message">Mensaje</label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      placeholder="Contanos qué tipo de mercadería operás, cobertura necesaria, frecuencia de entrega o volumen estimado"
-                      required
-                    ></textarea>
-                  </div>
-                </div>
-
-                <div class="form-actions">
-                  <button type="submit" class="btn btn--primary">
-                    Enviar consulta
-                  </button>
-                </div>
-
-                <p class="form-status" id="formStatus" aria-live="polite"></p>
-              </form>
-            </div>
-          </div>
+          <iframe
+            title="Mapa de CEA American en Villa Martelli"
+            src="https://www.google.com/maps?q=Mejico%205250%20Villa%20Martelli%20Buenos%20Aires&z=15&output=embed"
+            loading="lazy"
+            allowfullscreen
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
         </div>
       </section>
     </main>
 
     <footer class="footer">
       <div class="container footer__grid">
-        <!-- 1. Marca -->
         <div class="footer__brand">
-          <img src="img/logo2.png" alt="CEA American" class="footer__logo" />
-
+          <img src="img/web/logo.webp" alt="CEA American" class="footer__logo" width="240" height="56" loading="lazy" />
           <p>
             Almacenaje, logística y distribución para mercadería refrigerada,
             congelada y seca, con foco en cadena de frío, trazabilidad y control
             de operación.
           </p>
-
-          <!-- CTA MINI -->
-          <a href="#contactForm" class="btn btn--ghost footer__cta">
-            Solicitar cotización
-          </a>
         </div>
 
-        <!-- 2. Servicios -->
         <div class="footer__col">
-          <h4>Servicios</h4>
+          <h2>Servicios</h2>
           <ul>
             <li><a href="#servicios">Almacenaje refrigerado</a></li>
             <li><a href="#servicios">Almacenaje congelado</a></li>
@@ -919,9 +606,8 @@
           </ul>
         </div>
 
-        <!-- 3. Empresa -->
         <div class="footer__col">
-          <h4>Empresa</h4>
+          <h2>Empresa</h2>
           <ul>
             <li><a href="#diferenciales">Diferenciales</a></li>
             <li><a href="#infraestructura">Infraestructura</a></li>
@@ -930,91 +616,25 @@
           </ul>
         </div>
 
-        <!-- 4. Contacto -->
         <div class="footer__col">
-          <h4>Contacto</h4>
-          <ul class="footer__contact">
-            <li>
-              <a
-                href="https://www.google.com/maps/search/?api=1&query=Mejico+5250+Villa+Martelli+Buenos+Aires"
-                target="_blank"
-              >
-                Mejico 5250, Villa Martelli
-              </a>
-            </li>
-
-            <li>
-              <a href="tel:+5491154270519">+54 9 11 5427-0519 </a>
-            </li>
-
-            <li>
-              <a href="tel:+5477277571">+54 7727-7571 </a>
-            </li>
-
-            <li>
-              <a href="mailto:at.clientes@cea-american.com.ar">
-                at.clientes@cea-american.com.ar
-              </a>
-            </li>
-
-            <li>Horario: Lunes a Viernes · 08:00 a 17:00</li>
-
-            <li>Cobertura: CABA, GBA e interior del país</li>
+          <h2>Contacto</h2>
+          <ul>
+            <li><a href="https://www.google.com/maps/search/?api=1&query=Mejico+5250+Villa+Martelli+Buenos+Aires" target="_blank" rel="noopener noreferrer">Mejico 5250, Villa Martelli</a></li>
+            <li><a href="https://wa.me/5491154270519?text=Hola%2C%20estoy%20evaluando%20servicios%20de%20almacenaje%20y%20distribuci%C3%B3n.%20%C2%BFPodr%C3%ADan%20asesorarme%3F" target="_blank" rel="noopener noreferrer">+54 9 11 5427-0519</a></li>
+            <li><a href="tel:+541177277571">+54 11 7727-7571</a></li>
+            <li><a href="mailto:at.clientes@cea-american.com.ar">at.clientes@cea-american.com.ar</a></li>
           </ul>
         </div>
       </div>
 
-      <!-- Barra final -->
-      <div class="footer__bottom">
-        <div class="container footer__bottom-inner">
-          <p>
-            © 2026 CEA American. Almacenaje, logística y distribución de
-            alimentos<span class="footer__by">
-              · by <a href="https://raven3.com.ar" target="_blank">Raven3</a>
-            </span>
-          </p>
-
-          <nav class="footer__legal">
-            <a href="#inicio">Inicio</a>
-            <a href="#servicios">Servicios</a>
-            <a href="#contacto">Contacto</a>
-          </nav>
-        </div>
+      <div class="container footer__bottom">
+        <p>
+          © 2026 CEA American. Almacenaje, logística y distribución de alimentos
+          <span class="footer__by">· by <a href="https://raven3.com.ar" target="_blank" rel="noopener noreferrer">Raven3</a></span>
+        </p>
       </div>
     </footer>
 
-    <!-- MODAL ANIVERSARIO -->
-    <div class="anniversary-modal" id="anniversaryModal">
-      <div class="anniversary-modal__overlay"></div>
-
-      <div class="anniversary-modal__content">
-        <button class="anniversary-modal__close" id="closeModal" type="button">
-          ✕
-        </button>
-
-        <div class="anniversary-modal__inner">
-          <img
-            src="img/logo2.png"
-            alt="CEA American"
-            class="anniversary-modal__logo"
-          />
-
-          <span class="anniversary-modal__eyebrow">Aniversario</span>
-
-          <h2>🎉 23 años acompañando operaciones logísticas 🎉</h2>
-
-          <p>
-            Con 23 años de trayectoria, ofrecemos soluciones integrales de
-            almacenamiento y distribución a temperatura controlada, respaldadas
-            por experiencia y compromiso.
-          </p>
-
-          <button class="btn btn--primary" id="closeModalBtn" type="button">
-            Continuar
-          </button>
-        </div>
-      </div>
-    </div>
     <script src="main.js"></script>
   </body>
 </html>
